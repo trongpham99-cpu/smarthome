@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "smarthome-9978d": {
+      "hosting": {
+        "home": [
+          "smarthome-9978d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "smarthome-9978d"
+  }
+}

@@ -1,0 +1,23 @@
+<nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
+    <nz-card-meta [nzTitle]="value.name ? value.name : 'hệ thống đèn'" [nzDescription]="'Bật trong: ' + renderTime(value)"></nz-card-meta>
+</nz-card>
+<ng-template #coverTemplate>
+    <div *ngIf="value.status">
+        <img src="../assets/on.png">
+    </div>
+    <div *ngIf="!value.status">
+        <img src="../assets/off.png">
+    </div>
+    <div class="actions">
+        <button (click)="setValueToggle(value)" nz-button nzType="primary">{{value.status ? "Tắt" : "Bật"}}</button>
+        <button (click)="showModal(value)" nz-button nzType="primary">Hẹn giờ</button>
+    </div>
+</ng-template>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Cài đặt giờ mở đèn" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="setValueTimer()">
+    <ng-container *nzModalContent>
+        <nz-date-picker [(ngModel)]="valueDetail.timer" style="width: 100%;" nzFormat="yyyy-MM-dd HH:mm:ss"
+            [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"></nz-date-picker>
+    </ng-container>
+</nz-modal>
